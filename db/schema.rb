@@ -10,15 +10,24 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20191129084400) do
+ActiveRecord::Schema.define(version: 20191129104706) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "sample_models", force: :cascade do |t|
+    t.integer  "age"
     t.string   "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "second_sample_models", force: :cascade do |t|
+    t.integer  "sample_model_id", null: false
+    t.string   "phone"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+    t.index ["sample_model_id"], name: "index_second_sample_models_on_sample_model_id", using: :btree
   end
 
 end
